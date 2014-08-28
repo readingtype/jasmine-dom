@@ -519,9 +519,11 @@ describe("DOM matchers", function() {
     });
 
     it("should pass negated on element with a tag inside", function() {
-      var node= sandbox().innerHTML="<span></span>";
+      var node= sandbox();
+      node.innerHTML="<span></span>";
       setFixtures(node);
-      expect(findSandbox()).not.toBeEmpty();
+      var sb = findSandbox();
+      expect(sb).not.toBeEmpty();
     });
 
     it("should pass negated on element with text inside", function() {
@@ -564,7 +566,7 @@ describe("DOM matchers", function() {
     });
   });
 
-  describe("toContain", function() {
+  describe("toContainNode", function() {
     beforeEach(function() {
       var node= sandbox();
       node.innerHTML="<span></span>";
@@ -572,11 +574,11 @@ describe("DOM matchers", function() {
     });
 
     it("should pass if object contains selector", function() {
-      expect(findSandbox()).toContain('span');
+      expect(findSandbox()).toContainNode('span');
     });
 
     it("should pass negated if object does not contain selector", function() {
-      expect(findSandbox()).not.toContain('div');
+      expect(findSandbox()).not.toContainNode('div');
     });
   });
 });
